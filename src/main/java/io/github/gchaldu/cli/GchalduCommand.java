@@ -1,5 +1,6 @@
 package io.github.gchaldu.cli;
 
+import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
@@ -16,4 +17,9 @@ public class GchalduCommand {
 
     @Option(names = {"-V", "--version"}, versionHelp = true, description = "Muestra la información de versión y sale.")
     boolean versionRequested;
+
+    public static CommandLine newCommandLine() {
+        return new CommandLine(new GchalduCommand())
+                .setParameterExceptionHandler(new GchalduParameterExceptionHandler());
+    }
 }

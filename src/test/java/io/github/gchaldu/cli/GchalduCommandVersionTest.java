@@ -21,7 +21,7 @@ class GchalduCommandVersionTest {
         }
 
         StringWriter capturedOut = new StringWriter();
-        CommandLine commandLine = new CommandLine(new GchalduCommand());
+        CommandLine commandLine = GchalduCommand.newCommandLine();
         commandLine.setOut(new PrintWriter(capturedOut));
 
         int exitCode = commandLine.execute("--version");

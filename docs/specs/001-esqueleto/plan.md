@@ -32,7 +32,7 @@ Estado: aprobado
   - Test: `./mvnw test -Dtest=GchalduCommandHelpTest`.
   - Criterios: **C3**.
 
-- [ ] **T4: Implementar opción desconocida en castellano**
+- [x] **T4: Implementar opción desconocida en castellano**
   - Archivos:
     - Test: `src/test/java/io/github/gchaldu/cli/GchalduCommandUnknownOptionTest.java`.
     - Implementación: `src/main/java/io/github/gchaldu/cli/GchalduCommand.java` (o una clase `GchalduParameterExceptionHandler.java`).
