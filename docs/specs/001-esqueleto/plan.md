@@ -47,7 +47,7 @@ Estado: aprobado
   - Test: `./mvnw verify` genera `target/gchaldu.jar`; luego se ejecutan `java -jar target/gchaldu.jar --version`, `java -jar target/gchaldu.jar --help` y `java -jar target/gchaldu.jar --opcion-desconocida`, verificando salidas y códigos de salida.
   - Criterios: **C2**, **C3**, **C4**, **C5**.
 
-- [ ] **T6: Crear el workflow de CI**
+- [x] **T6: Crear el workflow de CI**
   - Archivos: `.github/workflows/ci.yml`.
   - Qué hace: corre `./mvnw verify` con `actions/setup-java@v6`, distribución `temurin`, Java 25 y `check-latest: true`, en `ubuntu-latest`, `macos-latest` y `windows-latest`. Cada job usa `shell: bash`. Se ejecuta en cada `push` y `pull_request`.
   - Test: se verifica al hacer push/PR; localmente `./mvnw verify` sigue en verde.
