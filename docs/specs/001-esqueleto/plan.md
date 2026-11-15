@@ -16,7 +16,7 @@ Estado: aprobado
   - Test: `./mvnw verify` pasa.
   - Criterios: **C1** (parcial), **C5**.
 
-- [ ] **T2: Implementar `--version` con recurso filtrado e `IVersionProvider`**
+- [x] **T2: Implementar `--version` con recurso filtrado e `IVersionProvider`**
   - Archivos:
     - Test: `src/test/java/io/github/gchaldu/cli/GchalduCommandVersionTest.java`.
     - Implementación: `src/main/resources/app.properties`, `pom.xml` (resource filtering), `src/main/java/io/github/gchaldu/cli/GchalduCommand.java`.
