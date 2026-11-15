@@ -1,4 +1,4 @@
-Estado: borrador
+Estado: aprobado
 
 # Spec 001: esqueleto
 
@@ -18,7 +18,7 @@ Crear un proyecto Maven con Java 25 y Picocli que responda a `gchaldu --version`
 - La versión se define una sola vez en `pom.xml` y la CLI la lee desde un recurso filtrado por Maven (`app.properties`).
 - Ayuda y mensajes de error en castellano, configurando encabezados, descripciones de opciones y un `IParameterExceptionHandler` personalizado.
 - Workflow `.github/workflows/ci.yml` que corre `./mvnw verify` con Java 25 en `ubuntu-latest`, `macos-latest` y `windows-latest`, en cada push y en cada pull request.
-- Tests de aceptación para los criterios C1 a C4.
+- Tests de aceptación para los criterios C2 a C4.
 - Verificación dual de C2 a C4: tests con `CommandLine.execute` sobre la clase del comando y ejecución real de `java -jar target/gchaldu.jar` durante `/verify`.
 
 ### Queda afuera
