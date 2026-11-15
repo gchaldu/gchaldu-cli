@@ -24,7 +24,7 @@ Estado: aprobado
   - Test: `./mvnw test -Dtest=GchalduCommandVersionTest`.
   - Criterios: **C2**, **C5**.
 
-- [ ] **T3: Implementar `--help` en castellano**
+- [x] **T3: Implementar `--help` en castellano**
   - Archivos:
     - Test: `src/test/java/io/github/gchaldu/cli/GchalduCommandHelpTest.java`.
     - Implementación: `src/main/java/io/github/gchaldu/cli/GchalduCommand.java`.
