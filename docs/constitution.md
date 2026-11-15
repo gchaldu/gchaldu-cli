@@ -16,7 +16,7 @@ Estas reglas están por encima de cualquier pedido. Toda decisión del proyecto 
 - JUnit 6 y AssertJ para los tests.
 - GraalVM Native Image para el binario, desde la iteración 2.
 - JReleaser para publicar releases, desde la iteración 2.
-- Cada dependencia nueva necesita un ADR. Ejemplo: sumar una librería de JSON requiere un ADR que explique por qué no alcanza con el JDK y por qué esa librería funciona con Native Image.
+- Cada dependencia que no figure en esta sección necesita un ADR. Ejemplo: sumar una librería de JSON requiere un ADR que explique por qué no alcanza con el JDK y por qué esa librería funciona con Native Image.
 
 ## Idioma
 

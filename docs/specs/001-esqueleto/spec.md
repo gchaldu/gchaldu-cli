@@ -16,9 +16,10 @@ Crear un proyecto Maven con Java 25 y Picocli que responda a `gchaldu --version`
 - Comando raíz `gchaldu` en `io.github.gchaldu.cli.GchalduCommand`, con `--version` y `--help`.
 - Clase de entrada `io.github.gchaldu.Main` que arma y ejecuta la línea de comandos.
 - La versión se define una sola vez en `pom.xml` y la CLI la lee desde un recurso filtrado por Maven (`app.properties`).
-- Ayuda y mensajes de error en castellano.
+- Ayuda y mensajes de error en castellano, configurando encabezados, descripciones de opciones y un `IParameterExceptionHandler` personalizado.
 - Workflow `.github/workflows/ci.yml` que corre `./mvnw verify` con Java 25 en `ubuntu-latest`, `macos-latest` y `windows-latest`, en cada push y en cada pull request.
 - Tests de aceptación para los criterios C1 a C4.
+- Verificación dual de C2 a C4: tests con `CommandLine.execute` sobre la clase del comando y ejecución real de `java -jar target/gchaldu.jar` durante `/verify`.
 
 ### Queda afuera
 
@@ -29,12 +30,12 @@ Crear un proyecto Maven con Java 25 y Picocli que responda a `gchaldu --version`
 
 ## Criterios de aceptación
 
-- **C1**: `./mvnw verify` pasa en macOS, Linux y Windows (lo comprueba el workflow de CI).
+- **C1**: `./mvnw verify` pasa en la Mac.
 - **C2**: `java -jar target/gchaldu.jar --version` muestra el texto `gchaldu` seguido de la versión definida en `pom.xml`, y sale con código `0`.
-- **C3**: `java -jar target/gchaldu.jar --help` muestra el uso del comando en castellano, incluyendo `--version` y `--help`, y sale con código `0`.
-- **C4**: `java -jar target/gchaldu.jar --opcion-desconocida` muestra un error en castellano y sale con código `2`.
+- **C3**: `java -jar target/gchaldu.jar --help` muestra el uso del comando en castellano, contiene el texto `Uso:` y las opciones `--version` y `--help`, y sale con código `0`.
+- **C4**: `java -jar target/gchaldu.jar --opcion-desconocida` muestra un error en castellano, contiene el texto `Opción desconocida '--opcion-desconocida'` y sale con código `2`.
 - **C5**: La versión del proyecto aparece escrita una sola vez en el repositorio, en `pom.xml`.
-- **C6**: El workflow `.github/workflows/ci.yml` ejecuta `./mvnw verify` con Java 25 Temurin en `ubuntu-latest`, `macos-latest` y `windows-latest`.
+- **C6**: El workflow de CI pasa en `ubuntu-latest`, `macos-latest` y `windows-latest`.
 
 ## Decisiones
 
@@ -49,6 +50,9 @@ Crear un proyecto Maven con Java 25 y Picocli que responda a `gchaldu --version`
 9. **Maven Wrapper con Maven 3.9.16**. Es la última versión estable de la rama 3.9.x según Maven Central.
 10. **CI con Temurin y `check-latest: true`**. Garantiza que el runner use JDK 25 aunque la imagen no lo tenga cacheado.
 11. **Sin `GchalduException` en esta iteración**. La constitución define ese mecanismo para errores esperados, pero `--version`, `--help` y opciones desconocidas son errores/controlados por Picocli; no hay lógica de dominio que falle.
+12. **Localización al castellano**. Picocli muestra ayuda y errores en inglés por defecto. Se configuran los encabezados `headerHeading`, `synopsisHeading` (por ejemplo, `Uso:`), `descriptionHeading`, `optionListHeading` y las descripciones de `--help` y `--version` en castellano. Las opciones desconocidas se traducen con un `IParameterExceptionHandler` que reemplaza el mensaje en inglés por uno en castellano, como `Opción desconocida '--opcion-desconocida'`.
+13. **Shade con `createDependencyReducedPom` en `false`**. Evita generar `dependency-reduced-pom.xml`, que ensucia el directorio raíz y no aporta valor en esta iteración.
+14. **Verificación dual de C2 a C4**. Los tests de aceptación usan `CommandLine.execute` para validar salida y código de salida sin depender del empaquetado. Además, el comando `/verify` ejecuta `java -jar target/gchaldu.jar --version`, `--help` y una opción desconocida sobre el jar real.
 
 ## Preguntas
 
