@@ -4,8 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -20,19 +20,14 @@ class GchalduCommandVersionTest {
             fail("La propiedad 'project.version' no está definida; ejecutá el test con Maven.");
         }
 
-        ByteArrayOutputStream capturedOut = new ByteArrayOutputStream();
-        PrintStream originalOut = System.out;
-        System.setOut(new PrintStream(capturedOut));
+        StringWriter capturedOut = new StringWriter();
+        CommandLine commandLine = new CommandLine(new GchalduCommand());
+        commandLine.setOut(new PrintWriter(capturedOut));
 
-        try {
-            int exitCode = new CommandLine(new GchalduCommand()).execute("--version");
-            String output = capturedOut.toString();
+        int exitCode = commandLine.execute("--version");
+        String output = capturedOut.toString();
 
-            assertThat(exitCode).isZero();
-            assertThat(output).contains("gchaldu");
-            assertThat(output).contains(version);
-        } finally {
-            System.setOut(originalOut);
-        }
+        assertThat(exitCode).isZero();
+        assertThat(output).contains("gchaldu " + version);
     }
 }

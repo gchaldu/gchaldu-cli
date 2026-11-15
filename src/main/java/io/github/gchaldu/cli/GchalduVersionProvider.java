@@ -4,6 +4,8 @@ import picocli.CommandLine.IVersionProvider;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 public class GchalduVersionProvider implements IVersionProvider {
@@ -24,7 +26,9 @@ public class GchalduVersionProvider implements IVersionProvider {
             if (input == null) {
                 throw new IOException("No se encontró el recurso app.properties");
             }
-            properties.load(input);
+            try (InputStreamReader reader = new InputStreamReader(input, StandardCharsets.UTF_8)) {
+                properties.load(reader);
+            }
         }
         return properties;
     }
