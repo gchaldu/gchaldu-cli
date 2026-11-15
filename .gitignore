@@ -21,3 +21,6 @@ buildNumber.properties
 *.iml
 .vscode/
 .DS_Store
+
+# Caché de herramientas locales
+.atl/
