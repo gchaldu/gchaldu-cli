@@ -1,4 +1,4 @@
-Estado: borrador
+Estado: aprobado
 
 # Plan 001: esqueleto
 
@@ -20,7 +20,7 @@ Estado: borrador
   - Archivos:
     - Test: `src/test/java/io/github/gchaldu/cli/GchalduCommandVersionTest.java`.
     - Implementación: `src/main/resources/app.properties`, `pom.xml` (resource filtering), `src/main/java/io/github/gchaldu/cli/GchalduCommand.java`.
-  - Qué hace: el test ejecuta `CommandLine.execute("--version")` y verifica que la salida contenga `gchaldu`, la versión leída de `System.getProperty("project.version")`, y que el código de salida sea `0`. Luego se agrega `app.properties` con `version=${project.version}`, se habilita el filtrado de recursos en `pom.xml` y se configura `GchalduCommand` con `@Command(versionProvider = GchalduVersionProvider.class)` para mostrar `gchaldu <version>`.
+  - Qué hace: el test ejecuta `CommandLine.execute("--version")` y verifica que la salida contenga `gchaldu`, la versión leída de `System.getProperty("project.version")`, y que el código de salida sea `0`. Si la propiedad `project.version` no está definida (por ejemplo, al correr el test desde IntelliJ sin Maven), el test falla con un mensaje claro como "La propiedad 'project.version' no está definida; ejecutá el test con Maven.". Luego se agrega `app.properties` con `version=${project.version}`, se habilita el filtrado de recursos en `pom.xml` y se configura `GchalduCommand` con `@Command(versionProvider = GchalduVersionProvider.class)` para mostrar `gchaldu <version>`.
   - Test: `./mvnw test -Dtest=GchalduCommandVersionTest`.
   - Criterios: **C2**, **C5**.
 
