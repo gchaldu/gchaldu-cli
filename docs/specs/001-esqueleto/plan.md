@@ -10,7 +10,7 @@ Estado: aprobado
 
 ## Tareas
 
-- [ ] **T1: Crear `pom.xml` base y Maven Wrapper**
+- [x] **T1: Crear `pom.xml` base y Maven Wrapper**
   - Archivos: `pom.xml`, `mvnw`, `mvnw.cmd`, `.mvn/wrapper/maven-wrapper.properties` (y `MavenWrapperDownloader.java` si aplica).
   - Qué hace: define `groupId`, `artifactId`, `version` (`0.1.0-SNAPSHOT`), Java 25 (`<release>25</release>`), `maven-compiler-plugin` 3.16.0, `maven-surefire-plugin` 3.6.1 con `<systemPropertyVariables><project.version>${project.version}</project.version></systemPropertyVariables>`, y las propiedades de versiones de Picocli 4.7.7, JUnit 6.1.3 y AssertJ 3.27.7. Genera el wrapper con Maven 3.9.16.
   - Test: `./mvnw verify` pasa.
