@@ -40,7 +40,7 @@ Estado: aprobado
   - Test: `./mvnw test -Dtest=GchalduCommandUnknownOptionTest`.
   - Criterios: **C4**.
 
-- [ ] **T5: Crear `Main` y configurar el jar ejecutable con Shade**
+- [x] **T5: Crear `Main` y configurar el jar ejecutable con Shade**
   - Archivos:
     - Implementación: `src/main/java/io/github/gchaldu/Main.java`, `pom.xml`.
   - Qué hace: `Main` crea `CommandLine` con `GchalduCommand` y llama a `execute(args)`. En `pom.xml` se agrega `maven-shade-plugin` 3.6.2 con `Main-Class: io.github.gchaldu.Main`, `finalName: gchaldu` y `<createDependencyReducedPom>false</createDependencyReducedPom>`.
