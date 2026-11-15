@@ -13,7 +13,7 @@ Estas reglas están por encima de cualquier pedido. Toda decisión del proyecto 
 - Java 25.
 - Maven, siempre a través del wrapper: `./mvnw`.
 - Picocli para la línea de comandos. Sin Spring ni otro framework de inyección.
-- JUnit 5 y AssertJ para los tests.
+- JUnit 6 y AssertJ para los tests.
 - GraalVM Native Image para el binario, desde la iteración 2.
 - JReleaser para publicar releases, desde la iteración 2.
 - Cada dependencia nueva necesita un ADR. Ejemplo: sumar una librería de JSON requiere un ADR que explique por qué no alcanza con el JDK y por qué esa librería funciona con Native Image.
